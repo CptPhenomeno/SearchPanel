@@ -1431,7 +1431,6 @@ namespace SearchPanelSample.Droid
 			global::SearchPanel.Droid.Resource.Drawable.notification_template_icon_low_bg = global::SearchPanelSample.Droid.Resource.Drawable.notification_template_icon_low_bg;
 			global::SearchPanel.Droid.Resource.Drawable.notification_tile_bg = global::SearchPanelSample.Droid.Resource.Drawable.notification_tile_bg;
 			global::SearchPanel.Droid.Resource.Drawable.notify_panel_notification_icon_bg = global::SearchPanelSample.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
-			global::SearchPanel.Droid.Resource.Drawable.search = global::SearchPanelSample.Droid.Resource.Drawable.search;
 			global::SearchPanel.Droid.Resource.Drawable.test_custom_background = global::SearchPanelSample.Droid.Resource.Drawable.test_custom_background;
 			global::SearchPanel.Droid.Resource.Drawable.tooltip_frame_dark = global::SearchPanelSample.Droid.Resource.Drawable.tooltip_frame_dark;
 			global::SearchPanel.Droid.Resource.Drawable.tooltip_frame_light = global::SearchPanelSample.Droid.Resource.Drawable.tooltip_frame_light;

@@ -15,11 +15,12 @@
             </LinearGradientBrush>
         </StackLayout.Background>
 
-        <search:TestSearchPanel
+        <search:SearchBar
             Margin="0,0,-16,0"
             BackgroundColor="#10FFFFFF"
             SearchCommand="{Binding TestCommand}"
-            SearchIconBackgroundColor="#22223D" />
+            SearchIconBackgroundColor="#22223D"
+            SearchIconColor="White" />
 
         <Label
             FontSize="24"
