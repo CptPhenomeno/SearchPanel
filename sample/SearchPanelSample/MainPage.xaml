@@ -21,7 +21,8 @@
             ClosePanelIconColor="White"
             SearchCommand="{Binding TestCommand}"
             SearchIconBackgroundColor="#22223D"
-            SearchIconColor="White" />
+            SearchIconColor="White"
+            Text="{Binding Query}" />
 
         <Label
             FontSize="24"

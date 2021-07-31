@@ -29,7 +29,7 @@
                     Text="&#xF0349;" />
             </StackLayout>
         </Grid>
-        <Entry Grid.Column="1" />
+        <Entry x:Name="SearchText" Grid.Column="1" />
         <Label
             x:Name="ClosePanelIcon"
             Grid.Column="2"

@@ -114,6 +114,21 @@ namespace SearchPanel
         }
         #endregion
 
+        #region Text
+        public static BindableProperty TextProperty = BindableProperty.Create(
+            nameof(Text),
+            typeof(string),
+            typeof(SearchBar),
+            default(string),
+            BindingMode.TwoWay);
+
+        public string Text
+        {
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
+        }
+        #endregion
+
         public SearchBar()
         {
             InitializeComponent();
@@ -136,6 +151,8 @@ namespace SearchPanel
             this.CircleBox.GestureRecognizers.Add(this._searchTapGesture);
             this.MainPanel.GestureRecognizers.Add(openPanelTapGesture);
             this.ClosePanelIcon.GestureRecognizers.Add(closePanelTapGesture);
+            this.SearchText.BindingContext = this;
+            this.SearchText.SetBinding(Entry.TextProperty, SearchBar.TextProperty.PropertyName, BindingMode.TwoWay);
         }
 
         private void OnMainPanelTapped(object sender, EventArgs e)
@@ -152,6 +169,7 @@ namespace SearchPanel
         {
             if (this._isOpen is true)
             {
+                this.Text = null;
                 this._closeAnimation.Commit(this, "CloseSearchBar");
                 this.CircleBox.IsVisible = false;
                 this._isOpen = false;
