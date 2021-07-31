@@ -13,6 +13,7 @@ namespace SearchPanelSample
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new MainViewModel();
         }
     }
 }

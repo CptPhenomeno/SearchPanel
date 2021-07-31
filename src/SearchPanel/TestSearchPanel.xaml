@@ -3,4 +3,36 @@
     x:Class="SearchPanel.TestSearchPanel"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:yummi="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" />
+    xmlns:yummi="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Name="Panel"
+    Padding="0"
+    CornerRadius="28,0,28,0"
+    HeightRequest="56"
+    HorizontalOptions="EndAndExpand"
+    WidthRequest="56">
+    <yummi:PancakeView.GestureRecognizers>
+        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+    </yummi:PancakeView.GestureRecognizers>
+    <Grid
+        x:Name="PanelGrid"
+        Padding="4"
+        BackgroundColor="Transparent"
+        ColumnDefinitions="48,*,Auto">
+        <Grid>
+            <BoxView x:Name="circleBox" CornerRadius="24" />
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center" InputTransparent="True">
+                <Image Source="search.png" InputTransparent="True" />
+            </StackLayout>
+        </Grid>
+        <Entry Grid.Column="1" />
+        <BoxView
+            Grid.Column="2"
+            CornerRadius="16"
+            HeightRequest="32"
+            HorizontalOptions="Center"
+            IsVisible="False"
+            VerticalOptions="Center"
+            WidthRequest="32"
+            Color="Red" />
+    </Grid>
+</yummi:PancakeView>
