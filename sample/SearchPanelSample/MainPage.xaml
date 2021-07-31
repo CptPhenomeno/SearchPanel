@@ -18,6 +18,7 @@
         <search:SearchBar
             Margin="0,0,-16,0"
             BackgroundColor="#10FFFFFF"
+            ClosePanelIconColor="White"
             SearchCommand="{Binding TestCommand}"
             SearchIconBackgroundColor="#22223D"
             SearchIconColor="White" />

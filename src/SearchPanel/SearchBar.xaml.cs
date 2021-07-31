@@ -17,6 +17,7 @@ namespace SearchPanel
 
         private static Color _searchIconBackgroundDefaultColor = Color.White;
         private static Color _searchIconDefaultColor = Color.DarkGray;
+        private static Color _closePanelIconDefaultColor = Color.LightGray;
 
         #region SearchIconBackgroundColor
         public static BindableProperty SearchIconBackgroundColorProperty = BindableProperty.Create(
@@ -89,35 +90,71 @@ namespace SearchPanel
         }
         #endregion
 
+        #region ClosePanelIconColor
+        public static BindableProperty ClosePanelIconColorProperty = BindableProperty.Create(
+            nameof(ClosePanelIconColor),
+            typeof(Color),
+            typeof(SearchBar),
+            _closePanelIconDefaultColor,
+            propertyChanged: OnClosePanelIconColorChanged);
+
+        public Color ClosePanelIconColor
+        {
+            get => (Color)GetValue(ClosePanelIconColorProperty);
+            set => SetValue(ClosePanelIconColorProperty, value);
+        }
+
+        private static void OnClosePanelIconColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (bindable is SearchBar searchBar &&
+                newValue is Color newColor)
+            {
+                searchBar.ClosePanelIcon.TextColor = newColor;
+            }
+        }
+        #endregion
+
         public SearchBar()
         {
             InitializeComponent();
-            this._isOpen = false;
 
+            var openPanelTapGesture = new TapGestureRecognizer();
+            var closePanelTapGesture = new TapGestureRecognizer();
+            openPanelTapGesture.Tapped += OnMainPanelTapped;
+            closePanelTapGesture.Tapped += OnClosePanelIconTapped;
+
+            this._isOpen = false;
             this._openAnimation = new Animation(v => this.WidthRequest = v, 56, 360);
             this._closeAnimation = new Animation(v => this.WidthRequest = v, 360, 56);
-            this.CircleBox.Color = this.SearchIconBackgroundColor;
-            this.CircleBox.IsVisible = false;
             this._searchTapGesture = new TapGestureRecognizer
             {
                 Command = this.SearchCommand
             };
+
+            this.CircleBox.Color = this.SearchIconBackgroundColor;
+            this.CircleBox.IsVisible = false;
             this.CircleBox.GestureRecognizers.Add(this._searchTapGesture);
+            this.MainPanel.GestureRecognizers.Add(openPanelTapGesture);
+            this.ClosePanelIcon.GestureRecognizers.Add(closePanelTapGesture);
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private void OnMainPanelTapped(object sender, EventArgs e)
         {
-            if (this._isOpen)
-            {
-                this._closeAnimation.Commit(this, "CloseSearchBar");
-                this.CircleBox.IsVisible = false;
-                this._isOpen = false;
-            }
-            else
+            if (this._isOpen is false)
             {
                 this._openAnimation.Commit(this, "OpenSearchBar");
                 this.CircleBox.IsVisible = true;
                 this._isOpen = true;
+            }
+        }
+
+        private void OnClosePanelIconTapped(object sender, EventArgs e)
+        {
+            if (this._isOpen is true)
+            {
+                this._closeAnimation.Commit(this, "CloseSearchBar");
+                this.CircleBox.IsVisible = false;
+                this._isOpen = false;
             }
         }
     }

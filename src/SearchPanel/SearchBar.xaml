@@ -4,20 +4,17 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:yummi="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    x:Name="Panel"
+    x:Name="MainPanel"
     Padding="0"
     CornerRadius="28,0,28,0"
     HeightRequest="56"
     HorizontalOptions="EndAndExpand"
     WidthRequest="56">
-    <yummi:PancakeView.GestureRecognizers>
-        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-    </yummi:PancakeView.GestureRecognizers>
     <Grid
         x:Name="PanelGrid"
         Padding="4"
         BackgroundColor="Transparent"
-        ColumnDefinitions="48,*,Auto">
+        ColumnDefinitions="48,*,32">
         <Grid>
             <BoxView x:Name="CircleBox" CornerRadius="24" />
             <StackLayout
@@ -33,14 +30,14 @@
             </StackLayout>
         </Grid>
         <Entry Grid.Column="1" />
-        <BoxView
+        <Label
+            x:Name="ClosePanelIcon"
             Grid.Column="2"
-            CornerRadius="16"
-            HeightRequest="32"
-            HorizontalOptions="Center"
-            IsVisible="False"
-            VerticalOptions="Center"
-            WidthRequest="32"
-            Color="Red" />
+            Padding="4"
+            FontFamily="Icons"
+            FontSize="24"
+            HorizontalTextAlignment="Center"
+            Text="&#xF0156;"
+            VerticalTextAlignment="Center" />
     </Grid>
 </yummi:PancakeView>
