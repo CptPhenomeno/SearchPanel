@@ -18,11 +18,12 @@
         <search:SearchBar
             Margin="0,0,-16,0"
             BackgroundColor="#10FFFFFF"
-            ClosePanelIconColor="White"
+            ClosePanelIconColor="#8F8F8F"
             SearchCommand="{Binding TestCommand}"
             SearchIconBackgroundColor="#22223D"
-            SearchIconColor="White"
-            Text="{Binding Query}" />
+            SearchIconColor="#FFFFFF"
+            Text="{Binding Query}"
+            TextColor="#8F8F8F" />
 
         <Label
             FontSize="24"

@@ -18,6 +18,7 @@ namespace SearchPanel
         private static Color _searchIconBackgroundDefaultColor = Color.White;
         private static Color _searchIconDefaultColor = Color.DarkGray;
         private static Color _closePanelIconDefaultColor = Color.LightGray;
+        private static Color _textDefaultColor = Color.LightGray;
 
         #region SearchIconBackgroundColor
         public static BindableProperty SearchIconBackgroundColorProperty = BindableProperty.Create(
@@ -129,6 +130,20 @@ namespace SearchPanel
         }
         #endregion
 
+        #region TextColor
+        public static BindableProperty TextColorProperty = BindableProperty.Create(
+            nameof(TextColor),
+            typeof(Color),
+            typeof(SearchBar),
+            _textDefaultColor);
+
+        public Color TextColor
+        {
+            get => (Color)GetValue(TextColorProperty);
+            set => SetValue(TextColorProperty, value);
+        }
+        #endregion
+
         public SearchBar()
         {
             InitializeComponent();
@@ -153,6 +168,7 @@ namespace SearchPanel
             this.ClosePanelIcon.GestureRecognizers.Add(closePanelTapGesture);
             this.SearchText.BindingContext = this;
             this.SearchText.SetBinding(Entry.TextProperty, SearchBar.TextProperty.PropertyName, BindingMode.TwoWay);
+            this.SearchText.SetBinding(Entry.TextColorProperty, SearchBar.TextColorProperty.PropertyName, BindingMode.TwoWay);
         }
 
         private void OnMainPanelTapped(object sender, EventArgs e)
