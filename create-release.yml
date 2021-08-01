@@ -1,0 +1,10 @@
+name: Release Created
+
+on:
+  release:
+    types: created
+
+jobs:
+  run: |
+    echo ${GITHUB_REF##*/}
+  
