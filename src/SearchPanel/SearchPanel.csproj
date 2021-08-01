@@ -2,7 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <PackageVersion></PackageVersion>
+    <Title>Search Panel</Title>
+    <Authors>Gabriele Benvenuti</Authors>
+    <Description>A simple search bar for Xamarin Forms that appears when tapped</Description>
+    <PackageProjectUrl>https://github.com/CptPhenomeno/SearchPanel</PackageProjectUrl>
+    <PackageTags>xamarin, xamarin forms, search</PackageTags>
+    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <PackageLicenseUrl>https://github.com/CptPhenomeno/SearchPanel/blob/actions/LICENSE</PackageLicenseUrl>
+    <PackageId>SearchPanel</PackageId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

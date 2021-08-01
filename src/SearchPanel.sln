@@ -5,10 +5,6 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchPanel", "SearchPanel\SearchPanel.csproj", "{A4D5EF06-EE37-4E94-AC19-8D283A14757E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchPanel.Droid", "SearchPanel.Droid\SearchPanel.Droid.csproj", "{EAC096B3-0976-40D8-8BF9-7129F4ABF5E9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchPanel.iOS", "SearchPanel.iOS\SearchPanel.iOS.csproj", "{57373EA1-260D-4E38-B466-2D92C67C7E71}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

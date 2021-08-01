@@ -23,3 +23,20 @@ jobs:
         prerelease: true
       env:
           GITHUB_TOKEN: ${{ github.token }}
+          
+    - name: Install dependencies
+      run: dotnet restore src/SearchPanel/SearchPanel.csproj
+      
+    - name: Build and Pack
+      run: dotnet pack src/SearchPanel/SearchPanel.csproj --configuration Release --no-restore /p:Version=${{ github.event.inputs.version }} 
+    
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: searchpanel
+        # Directory containing files to upload
+        path: src/SearchPanel/bin/Release
+    
+    - name: Push to nuget
+      run: dotnet nuget push src/SearchPanel/bin/Release/SearchPanel.${{ github.event.inputs.version }}.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
