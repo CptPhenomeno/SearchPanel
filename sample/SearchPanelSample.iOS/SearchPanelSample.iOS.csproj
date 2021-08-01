@@ -131,12 +131,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SearchPanel.iOS\SearchPanel.iOS.csproj">
-      <Project>{57373ea1-260d-4e38-b466-2d92c67c7e71}</Project>
-      <Name>SearchPanel.iOS</Name>
-      <IsAppExtension>false</IsAppExtension>
-      <IsWatchApp>false</IsWatchApp>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\SearchPanel\SearchPanel.csproj">
       <Project>{430bd579-bdd6-4ffa-bdbb-e491bd71e512}</Project>
       <Name>SearchPanel</Name>

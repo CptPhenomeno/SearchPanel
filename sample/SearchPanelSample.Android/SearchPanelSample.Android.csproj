@@ -94,10 +94,6 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SearchPanel.Droid\SearchPanel.Droid.csproj">
-      <Project>{eac096b3-0976-40d8-8bf9-7129f4abf5e9}</Project>
-      <Name>SearchPanel.Droid</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\SearchPanel\SearchPanel.csproj">
       <Project>{430bd579-bdd6-4ffa-bdbb-e491bd71e512}</Project>
       <Name>SearchPanel</Name>
