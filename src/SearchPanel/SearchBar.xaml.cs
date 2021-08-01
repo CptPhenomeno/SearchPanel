@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
@@ -14,6 +15,7 @@ namespace SearchPanel
         private Animation _openAnimation;
         private Animation _closeAnimation;
         private TapGestureRecognizer _searchTapGesture;
+        private Command _internalCommand;
 
         private static Color _searchIconBackgroundDefaultColor = Color.White;
         private static Color _searchIconDefaultColor = Color.DarkGray;
@@ -72,22 +74,12 @@ namespace SearchPanel
         public static BindableProperty SearchCommandProperty = BindableProperty.Create(
             nameof(SearchCommand),
             typeof(ICommand),
-            typeof(SearchBar),
-            propertyChanged: OnSearchCommandChanged);
+            typeof(SearchBar));
 
         public ICommand SearchCommand
         {
             get => (ICommand)GetValue(SearchCommandProperty);
             set => SetValue(SearchCommandProperty, value);
-        }
-
-        private static void OnSearchCommandChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            if (bindable is SearchBar searchBar &&
-                newValue is ICommand newCommand)
-            {
-                searchBar._searchTapGesture.Command = newCommand;
-            }
         }
         #endregion
 
@@ -156,9 +148,17 @@ namespace SearchPanel
             this._isOpen = false;
             this._openAnimation = new Animation(v => this.WidthRequest = v, 56, 360);
             this._closeAnimation = new Animation(v => this.WidthRequest = v, 360, 56);
+            this._internalCommand = new Command(() =>
+            {
+                if (this.SearchCommand?.CanExecute(null) ?? false)
+                {
+                    this.SearchCommand.Execute(null);
+                    CloseAction();
+                }
+            });
             this._searchTapGesture = new TapGestureRecognizer
             {
-                Command = this.SearchCommand
+                Command = this._internalCommand
             };
 
             this.CircleBox.Color = this.SearchIconBackgroundColor;
@@ -174,22 +174,34 @@ namespace SearchPanel
         private void OnMainPanelTapped(object sender, EventArgs e)
         {
             if (this._isOpen is false)
-            {
-                this._openAnimation.Commit(this, "OpenSearchBar");
-                this.CircleBox.IsVisible = true;
-                this._isOpen = true;
-            }
+                OpenAction();
         }
 
         private void OnClosePanelIconTapped(object sender, EventArgs e)
         {
             if (this._isOpen is true)
+                CloseAction();
+        }
+
+        private void CloseAction()
+        {
+            this.SearchText.Unfocus();
+            this.Text = null;
+            this._closeAnimation.Commit(this, "CloseSearchBar");
+            this.CircleBox.IsVisible = false;
+            this._isOpen = false;
+        }
+
+        private void OpenAction()
+        {
+            this._openAnimation.Commit(this, "OpenSearchBar");
+            this.CircleBox.IsVisible = true;
+            this._isOpen = true;
+            Device.BeginInvokeOnMainThread(async () =>
             {
-                this.Text = null;
-                this._closeAnimation.Commit(this, "CloseSearchBar");
-                this.CircleBox.IsVisible = false;
-                this._isOpen = false;
-            }
+                await Task.Delay(50);
+                this.SearchText.Focus();
+            });
         }
     }
 }
